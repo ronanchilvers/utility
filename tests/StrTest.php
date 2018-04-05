@@ -207,4 +207,17 @@ class StrTest extends TestCase
         $this->assertEquals('foobar is...', $result);
         $this->assertEquals(12, mb_strlen($result));
     }
+
+    /**
+     * Test that a string with no word boundaries effectively disables word boundary support
+     *
+     * @test
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function testTruncateStringWithNoWordBoundariesDisablesWordBoundaries()
+    {
+        $result = Str::truncate('foobar_is_great', 11, '...', true);
+        $this->assertEquals('foobar_i...', $result);
+        $this->assertEquals(11, mb_strlen($result));
+    }
 }
