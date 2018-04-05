@@ -14,7 +14,7 @@ class Str
     /**
      * @var array
      */
-    static protected $pluralExceptions = [
+    static protected $plurals = [
         'mouse' => 'mice',
         'sheep' => 'sheep',
         'tooth' => 'teeth',
@@ -41,31 +41,37 @@ class Str
      * [4.1] 's' rule 1    (ends in a vowel + y or o : boy/radio)
      * [4.2] 's' rule 2    (ends in other than above : cat/ball)
      *
-     * @param string
+     * @param string $string The singular noun to pluralise
+     * @param int $count
+     * @param string $plural
      * @return string
      * @author Ronan Chilvers <ronan@d3r.com>
      */
-    public function plural($string, $count = 1)
+    static public function plural($string, $count = 1, $plural = false)
     {
         $string = trim($string);
         if (empty($string) || $count == 1) {
             return $string;
         }
 
+        if (false !== $plural) {
+            return $plural;
+        }
+
         $string = strtolower($string);
-        if (in_array($string, static::$pluralExceptions)) {
-            return static::$pluralExceptions[$string];
+        if (isset(static::$plurals[$string])) {
+            return static::$plurals[$string];
         }
 
         // [1.0]
-        if ('y' == substr($string, -1)) {
+        if (!in_array(substr($string, -2, 1), static::$vowels) && 'y' == substr($string, -1)) {
             return substr($string, 0, -1) . 'ies';
         }
 
         // [2.0]
         if ('f' == substr($string, -1) || 'fe' == substr($string, -2)) {
             $length = ('e' == substr($string, -1)) ? -2 : -1 ;
-            return substr($string, $length) . 'ves';
+            return substr($string, 0, $length) . 'ves';
         }
 
         // [3.1]
