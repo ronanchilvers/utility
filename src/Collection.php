@@ -86,7 +86,7 @@ class Collection implements Countable, IteratorAggregate
     /**
      * Get an iterator instance
      *
-     * @return Iterator
+     * @return \ArrayIterator
      * @author Ronan Chilvers <ronan@d3r.com>
      */
     public function getIterator()
