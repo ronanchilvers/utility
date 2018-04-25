@@ -220,4 +220,16 @@ class StrTest extends TestCase
         $this->assertEquals('foobar_i...', $result);
         $this->assertEquals(11, mb_strlen($result));
     }
+
+    /**
+     * Test that token() can generate a token of the correct length
+     *
+     * @test
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function testGenerateTokenOfTheRightLength()
+    {
+        $this->assertEquals(64, strlen(Str::token()));
+        $this->assertEquals(128, strlen(Str::token(128)));
+    }
 }

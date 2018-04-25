@@ -178,4 +178,18 @@ class Str
 
         return $matches[1] . $suffix;
     }
+
+    /**
+     * Generate a long random string suitable for use as a token
+     *
+     * @param int $length
+     * @return string
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    static public function token($length = 64)
+    {
+        return substr(bin2hex(
+            random_bytes($length)
+        ), 0, $length);
+    }
 }
