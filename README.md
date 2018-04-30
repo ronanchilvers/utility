@@ -46,7 +46,7 @@ Generate a random string token of a given length.
 
 ## Testing
 
-Thw utility classes are very simple and consequently  have 100% test coverage. You can run the tests by doing:
+The utility classes are very simple and consequently  have 100% test coverage. You can run the tests by doing:
 
 ```
 ./vendor/bin/phpunit
