@@ -4,9 +4,12 @@ php:
     - 7.0
     - 7.1
     - 7.2
+    - nightly
 
 matrix:
     fast_finish: true
+    allowed_failures:
+      php: nightly
 
 cache:
     directories:
