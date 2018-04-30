@@ -1,5 +1,9 @@
 # utility
 
+[![Build Status](https://travis-ci.org/ronanchilvers/utility.svg?branch=master)](https://travis-ci.org/ronanchilvers/utility)
+[![codecov](https://codecov.io/gh/ronanchilvers/utility/branch/master/graph/badge.svg)](https://codecov.io/gh/ronanchilvers/utility)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+
 The package is intended provides a set of classes and methods that help with common tasks in PHP projects.
 
 ## Installation
@@ -60,4 +64,4 @@ If anyone has any patches they want to contribute I'd be more than happy to revi
 
 ## License
 
-This software is licensed under the MIT license. Please see the [License File](LICENSE.md) for more information. 
+This software is licensed under the MIT license. Please see the [License File](LICENSE.md) for more information.
