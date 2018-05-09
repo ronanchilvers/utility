@@ -18,35 +18,95 @@ class StrTest extends TestCase
      * @return array<array>
      * @author Ronan Chilvers <ronan@d3r.com>
      */
-    public function pluralsProvider()
+    public function pluralProvider()
     {
         return [
         //  singular    plural
-            ['cat',     'cats'],
-            ['boy',     'boys'],
-            ['baby',    'babies'],
-            ['lady',    'ladies'],
-            ['leaf',    'leaves'],
-            ['knife',   'knives'],
-            ['match',   'matches'],
-            ['dish',    'dishes'],
-            ['bus',     'buses'],
-            ['glass',   'glasses'],
-            ['fox',     'foxes'],
-            ['buzz',    'buzzes'],
-            ['radio',   'radios'],
-            ['ball',    'balls'],
-            ['mango',   'mangoes'],
-            ['sheep',   'sheep'],
-            ['tooth',   'teeth'],
-            ['mouse',   'mice'],
+            ['baby',        'babies'],
+            ['ball',        'balls'],
+            ['boy',         'boys'],
+            ['bus',         'buses'],
+            ['buzz',        'buzzes'],
+            ['cat',         'cats'],
+            ['child',       'children'],
+            ['deer',        'deer'],
+            ['dish',        'dishes'],
+            ['equipment',   'equipment'],
+            ['fish',        'fish'],
+            ['foot',        'feet'],
+            ['fox',         'foxes'],
+            ['glass',       'glasses'],
+            ['goose',       'geese'],
+            ['information', 'information'],
+            ['knife',       'knives'],
+            ['lady',        'ladies'],
+            ['leaf',        'leaves'],
+            ['man',         'men'],
+            ['mango',       'mangoes'],
+            ['match',       'matches'],
+            ['money',       'money'],
+            ['mouse',       'mice'],
+            ['person',      'people'],
+            ['radio',       'radios'],
+            ['rice',        'rice'],
+            ['series',      'series'],
+            ['sex',         'sexes'],
+            ['sheep',       'sheep'],
+            ['species',     'species'],
+            ['tooth',       'teeth'],
+            ['valve',       'valves'],
+        ];
+    }
+
+    /**
+     * Provider for singular / plural words
+     *
+     * @return array<array>
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function singularProvider()
+    {
+        return [
+        //  singular    plural
+            ['baby',        'babies'],
+            ['ball',        'balls'],
+            ['boy',         'boys'],
+            ['bus',         'buses'],
+            ['buzz',        'buzzes'],
+            ['cat',         'cats'],
+            ['child',       'children'],
+            ['deer',        'deer'],
+            ['dish',        'dishes'],
+            ['equipment',   'equipment'],
+            ['fish',        'fish'],
+            ['foot',        'feet'],
+            ['fox',         'foxes'],
+            ['glass',       'glasses'],
+            ['goose',       'geese'],
+            ['information', 'information'],
+            ['lady',        'ladies'],
+            ['leaf',        'leaves'],
+            ['man',         'men'],
+            ['mango',       'mangoes'],
+            ['match',       'matches'],
+            ['money',       'money'],
+            ['mouse',       'mice'],
+            ['person',      'people'],
+            ['radio',       'radios'],
+            ['rice',        'rice'],
+            ['series',      'series'],
+            ['sex',         'sexes'],
+            ['sheep',       'sheep'],
+            ['species',     'species'],
+            ['tooth',       'teeth'],
+            ['valve',       'valves'],
         ];
     }
 
     /**
      * Test that Str::plural() returns singular for count of 1
      *
-     * @dataProvider pluralsProvider
+     * @dataProvider pluralProvider
      * @test
      * @author Ronan Chilvers <ronan@d3r.com>
      */
@@ -58,7 +118,7 @@ class StrTest extends TestCase
     /**
      * Test that Str::plural() converts known words correctly
      *
-     * @dataProvider pluralsProvider
+     * @dataProvider pluralProvider
      * @test
      * @author Ronan Chilvers <ronan@d3r.com>
      */
@@ -70,7 +130,7 @@ class StrTest extends TestCase
     /**
      * Test that explicit plurals are not returned for count == 1
      *
-     * @dataProvider pluralsProvider
+     * @dataProvider pluralProvider
      * @test
      * @author Ronan Chilvers <ronan@d3r.com>
      */
@@ -82,13 +142,61 @@ class StrTest extends TestCase
     /**
      * Test that explicit plurals are returned for counts != 1
      *
-     * @dataProvider pluralsProvider
+     * @dataProvider pluralProvider
      * @test
      * @author Ronan Chilvers <ronan@d3r.com>
      */
     public function testExplicitPluralIsReturned($singular, $plural)
     {
         $this->assertEquals('foobar', Str::plural($singular, 2, 'foobar'));
+    }
+
+    /**
+     * Test that Str::singular() returns a plural for counts != 1
+     *
+     * @dataProvider singularProvider
+     * @test
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function testSingularReturnsSingularForCountNotOne($singular, $plural)
+    {
+        $this->assertEquals($plural, Str::singular($plural, 2));
+    }
+
+    /**
+     * Test that Str::singular works for known words
+     *
+     * @dataProvider singularProvider
+     * @test
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function testSingularConvertsKnownWords($singular, $plural)
+    {
+        $this->assertEquals($singular, Str::singular($plural, 1));
+    }
+
+    /**
+     * Test that explicit singular is not returned for counts != 1
+     *
+     * @dataProvider pluralProvider
+     * @test
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function testExplicitSingularIsNotReturnedForCountNotOne($singular, $plural)
+    {
+        $this->assertEquals($plural, Str::singular($plural, 2, 'foobar'));
+    }
+
+    /**
+     * Test that explicit singulars are returned for counts == 1
+     *
+     * @dataProvider singularProvider
+     * @test
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function testExplicitSingularIsReturned($singular, $plural)
+    {
+        $this->assertEquals('foobar', Str::singular($plural, 1, 'foobar'));
     }
 
     /**

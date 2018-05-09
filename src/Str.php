@@ -14,10 +14,30 @@ class Str
     /**
      * @var array
      */
-    static protected $plurals = [
-        'mouse' => 'mice',
-        'sheep' => 'sheep',
-        'tooth' => 'teeth',
+    static protected $irregulars = [
+        'child'  => 'children',
+        'foot'   => 'feet',
+        'goose'  => 'geese',
+        'man'    => 'men',
+        'mouse'  => 'mice',
+        'person' => 'people',
+        'sheep'  => 'sheep',
+        'tooth'  => 'teeth',
+    ];
+
+    /**
+     * @var array
+     */
+    static protected $uncountable = [
+        'sheep',
+        'fish',
+        'deer',
+        'series',
+        'species',
+        'money',
+        'rice',
+        'information',
+        'equipment'
     ];
 
     /**
@@ -50,6 +70,10 @@ class Str
     static public function plural($string, $count = 1, $plural = false)
     {
         $string = trim($string);
+        if (in_array($string, static::$uncountable) && false === $plural) {
+            return $string;
+        }
+
         if (empty($string) || $count == 1) {
             return $string;
         }
@@ -59,8 +83,8 @@ class Str
         }
 
         $string = mb_strtolower($string);
-        if (isset(static::$plurals[$string])) {
-            return static::$plurals[$string];
+        if (isset(static::$irregulars[$string])) {
+            return static::$irregulars[$string];
         }
 
         // [1.0]
@@ -85,6 +109,63 @@ class Str
         }
 
         return $string . 's';
+    }
+
+    /**
+     * Singularise a string
+     *
+     * [1.0] 'ies' rule    (ends in a consonant + y : baby/lady)
+     * [2.0] 'ves' rule    (ends in f or fe : leaf/knife) --- roof : rooves (correct but old english, roofs is ok).
+     * [3.1] 'es' rule 1   (ends in a consonant + o : volcano/mango)
+     * [3.2] 'es' rule 2   (ends in ch, sh, s, ss, x, z : match/dish/bus/glass/fox/buzz)
+     * [4.1] 's' rule 1    (ends in a vowel + y or o : boy/radio)
+     * [4.2] 's' rule 2    (ends in other than above : cat/ball)
+     *
+     * @param string $string The singular noun to singularise
+     * @param int $count
+     * @param string $singular
+     * @return string
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    static public function singular($string, $count = 1, $singular = false)
+    {
+        $string = trim($string);
+        if (in_array($string, static::$uncountable) && false === $singular) {
+            return $string;
+        }
+
+        if (empty($string) || $count !== 1) {
+            return $string;
+        }
+
+        if (false !== $singular) {
+            return $singular;
+        }
+
+        $singulars = array_flip(static::$irregulars);
+        $string = mb_strtolower($string);
+        if (isset($singulars[$string])) {
+            return $singulars[$string];
+        }
+
+        // [1.0]
+        if ('ies' == mb_substr($string, -3)) {
+            return mb_substr($string, 0, -3) . 'y';
+        }
+
+        // [2.0]
+        if ('ves' == mb_substr($string, -3)) {
+            if (in_array(mb_substr($string, -4, 1), static::$vowels)) {
+                return mb_substr($string, 0, -3) . 'f';
+            }
+        }
+
+        // [3.1, 3.2]
+        if ('ves' != mb_substr($string, -3) && 'es' == mb_substr($string, -2)) {
+            return mb_substr($string, 0, -2);
+        }
+
+        return rtrim($string, 's');
     }
 
     /**
