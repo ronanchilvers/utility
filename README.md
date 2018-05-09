@@ -24,6 +24,10 @@ The `Str` class provides some useful methods for dealing with strings.
 
 Pluralise a string. Provide a singular word and count and `plural()` will pluralise it if appropriate. If its an odd word that doesn't pluralise easily, you can supply the plural you want to use as a third argument.
 
+### `Str::singular($string, $count = 1, $singular = false)`
+
+Singularise a plural string. Provide a plural word and an optional count and `singular()` will do its best to singularise it for you. If it gets it wrong you can pass an explicit singular as a third argument.
+
 ### `Str::pascal($string,  $allowed = [])`
 
 Convert a string to PascalCase. This method will by default remove any characters except a-z and 0-9. If you have additional characters you'd like to retain pass them as an array of strings in the `$allowed` argument.
