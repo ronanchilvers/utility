@@ -9,7 +9,7 @@ The package is intended provides a set of classes and methods that help with com
 ## Installation
 
 ```
-composer install ronanchilvers/utility
+composer require ronanchilvers/utility
 ```
 
 
