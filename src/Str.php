@@ -67,7 +67,7 @@ class Str
      * @return string
      * @author Ronan Chilvers <ronan@d3r.com>
      */
-    static public function plural($string, $count = 1, $plural = false)
+    static public function plural($string, $count = 2, $plural = false)
     {
         $string = trim($string);
         if (in_array($string, static::$uncountable) && false === $plural) {
