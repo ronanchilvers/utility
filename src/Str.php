@@ -273,4 +273,26 @@ class Str
             random_bytes($length)
         ), 0, $length);
     }
+
+    /**
+     * Convert a string to a boolean value
+     *
+     * @param string
+     * @return boolean
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    static public function bool($string)
+    {
+        switch ($string) {
+
+            case '1':
+            case 'yes':
+            case 'true':
+                return true;
+
+            default:
+                return false;
+
+        }
+    }
 }

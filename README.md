@@ -48,6 +48,10 @@ Truncate a string to a given length. By default the string is suffixed with an e
 
 Generate a random string token of a given length.
 
+### `Str::bool($strgin)`
+
+Determine if a string means true or false.
+
 ## Testing
 
 The utility classes are very simple and consequently  have 100% test coverage. You can run the tests by doing:
