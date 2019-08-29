@@ -283,9 +283,11 @@ class Str
      */
     static public function bool($string)
     {
+        if (true === $string) {
+            return true;
+        }
         switch ($string) {
 
-            case true;
             case '1':
             case 'yes':
             case 'true':
