@@ -285,6 +285,7 @@ class Str
     {
         switch ($string) {
 
+            case true;
             case '1':
             case 'yes':
             case 'true':
