@@ -48,7 +48,7 @@ Truncate a string to a given length. By default the string is suffixed with an e
 
 Generate a random string token of a given length.
 
-### `Str::bool($strgin)`
+### `Str::bool($string)`
 
 Determine if a string means true or false.
 
