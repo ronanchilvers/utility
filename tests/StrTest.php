@@ -104,6 +104,24 @@ class StrTest extends TestCase
     }
 
     /**
+     * Boolean string provider
+     *
+     * @return array
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function boolProvider()
+    {
+        return [
+            ['1', true],
+            ['yes', true],
+            ['true', true],
+            ['0', false],
+            ['foo', false],
+            ['false', false],
+        ];
+    }
+
+    /**
      * Test that Str::plural() returns singular for count of 1
      *
      * @dataProvider pluralProvider
@@ -339,5 +357,17 @@ class StrTest extends TestCase
     {
         $this->assertEquals(64, strlen(Str::token()));
         $this->assertEquals(128, strlen(Str::token(128)));
+    }
+
+    /**
+     * Test that bool() returns true for truthy strings
+     *
+     * @dataProvider boolProvider
+     * @test
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function testBoolReturnsCorrectBooleans($string, $bool)
+    {
+        $this->assertEquals($bool, Str::bool($string));
     }
 }

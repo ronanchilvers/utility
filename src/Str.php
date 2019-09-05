@@ -281,12 +281,37 @@ class Str
      * @param string $piece...
      * @author Ronan Chilvers <ronan@d3r.com>
      */
-    public function join($seperator, ...$pieces)
+    static public function join($seperator, ...$pieces)
     {
         foreach ($pieces as &$piece) {
             $piece = trim($piece, $seperator);
         }
 
         return implode($seperator, $pieces);
+    }
+
+    /**
+     * Convert a string to a boolean value
+     *
+     * @param string
+     * @return boolean
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    static public function bool($string)
+    {
+        if (true === $string) {
+            return true;
+        }
+        switch ($string) {
+
+            case '1':
+            case 'yes':
+            case 'true':
+                return true;
+
+            default:
+                return false;
+
+        }
     }
 }
