@@ -370,4 +370,30 @@ class StrTest extends TestCase
     {
         $this->assertEquals($bool, Str::bool($string));
     }
+
+    /**
+     * Test that Str::join works with simple strings
+     *
+     * @test
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function testJoinWorksWithSimpleStrings()
+    {
+        $result = Str::join(':', 'one', 'two', 'three');
+
+        $this->assertEquals('one:two:three', $result);
+    }
+
+    /**
+     * Test that join cleans up separators
+     *
+     * @test
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function testJoinCleansUpSeparators()
+    {
+        $result = Str::join(':', 'one:', ':two', ':three:');
+
+        $this->assertEquals('one:two:three', $result);
+    }
 }
