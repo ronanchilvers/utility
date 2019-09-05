@@ -273,4 +273,20 @@ class Str
             random_bytes($length)
         ), 0, $length);
     }
+
+    /**
+     * Create a string by joining an arbitrary number of other strings with a separator
+     *
+     * @param string $seperator
+     * @param string $piece...
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function join($seperator, ...$pieces)
+    {
+        foreach ($pieces as &$piece) {
+            $piece = trim($piece, $seperator);
+        }
+
+        return implode($seperator, $pieces);
+    }
 }
