@@ -100,7 +100,11 @@ class File
                 continue;
             }
             $thisPath = static::join($path, $file);
-            if (is_dir($thisPath) ) {
+            if (is_link($thisPath)) {
+                if (!unlink($thisPath)) {
+                    return false;
+                }
+            } else if (is_dir($thisPath) ) {
                 if (!static::rm($thisPath)) {
                     return false;
                 }
