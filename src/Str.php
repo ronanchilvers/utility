@@ -314,4 +314,22 @@ class Str
 
         }
     }
+
+    /**
+     * Simple moustaches templating
+     *
+     * @param string $template
+     * @param array $params
+     * @return string
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    static public function moustaches(string $template, array $params)
+    {
+        $keys = array_map(function ($value) {
+            return '{'.$value.'}';
+        }, array_keys($params));
+        $values = array_values($params);
+
+        return str_replace($keys, $values, $template);
+    }
 }
