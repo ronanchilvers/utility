@@ -236,7 +236,7 @@ class Str
      * @param int $length The length to truncate to
      * @param string $suffix Suffix to tag on the end of the string
      * @param boolean $words Respect word boundaries
-     * @param
+     * @return string
      * @author Ronan Chilvers <ronan@d3r.com>
      */
     static public function truncate($string, $length, $suffix = '...', $words = false)
