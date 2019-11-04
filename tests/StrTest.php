@@ -18,7 +18,7 @@ class StrTest extends TestCase
      * @return array<array>
      * @author Ronan Chilvers <ronan@d3r.com>
      */
-    public function pluralProvider()
+    public function pluralProvider(): array
     {
         return [
         //  singular    plural
@@ -64,7 +64,7 @@ class StrTest extends TestCase
      * @return array<array>
      * @author Ronan Chilvers <ronan@d3r.com>
      */
-    public function singularProvider()
+    public function singularProvider(): array
     {
         return [
         //  singular    plural
@@ -109,7 +109,7 @@ class StrTest extends TestCase
      * @return array
      * @author Ronan Chilvers <ronan@d3r.com>
      */
-    public function boolProvider()
+    public function boolProvider(): array
     {
         return [
             ['1', true],
@@ -118,6 +118,21 @@ class StrTest extends TestCase
             ['0', false],
             ['foo', false],
             ['false', false],
+        ];
+    }
+
+    /**
+     * Normalised string provider
+     *
+     * @return array
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function normalisedStringProvider(): array
+    {
+        return [
+            ['Foo Bar Baz',             'foo-bar-baz'],
+            ['Foo 123 bar 456 baz',     'foo-123-bar-456-baz'],
+            ['baz~ BOJ--boo',           'baz-boj-boo'],
         ];
     }
 
@@ -395,5 +410,17 @@ class StrTest extends TestCase
         $result = Str::join(':', 'one:', ':two', ':three:');
 
         $this->assertEquals('one:two:three', $result);
+    }
+
+    /**
+     * Test that normalise works as expected
+     *
+     * @test
+     * @dataProvider normalisedStringProvider
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    public function testStringsAreNormalisedCorrectly($string, $expected)
+    {
+        $this->assertEquals($expected, Str::normalise($string));
     }
 }

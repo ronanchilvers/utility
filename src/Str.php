@@ -332,4 +332,20 @@ class Str
 
         return str_replace($keys, $values, $template);
     }
+
+    /**
+     * Normalise a string into a key with only hyphens and lowercase alphanumeric characters
+     *
+     * @param string $string
+     * @return string
+     * @author Ronan Chilvers <ronan@d3r.com>
+     */
+    static public function normalise($string): string
+    {
+        $string = strtolower($string);
+        $string = preg_replace('/[^A-z0-9\s-]+/', '', $string);
+        $string = preg_replace('/[\s-]{1,}/', '-', $string);
+
+        return $string;
+    }
 }
