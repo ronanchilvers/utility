@@ -1,8 +1,7 @@
 # utility
 
-[![Build Status](https://travis-ci.org/ronanchilvers/utility.svg?branch=master)](https://travis-ci.org/ronanchilvers/utility)
-[![codecov](https://codecov.io/gh/ronanchilvers/utility/branch/master/graph/badge.svg)](https://codecov.io/gh/ronanchilvers/utility)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Actions Status](https://github.com/ronanchilvers/utility/workflows/Unit%20Tests/badge.svg)](https://github.com/ronanchilvers/utility/actions)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ronanchilvers/utility/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ronanchilvers/utility/?branch=master)
 
 The package is intended provides a set of classes and methods that help with common tasks in PHP projects.
 
